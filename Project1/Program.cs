@@ -1,4 +1,6 @@
 ﻿using Project1;
+using System.Reflection.Metadata.Ecma335;
+using System.Runtime.InteropServices;
 
 Menu menu = new Menu();
 Console.WriteLine();
@@ -8,9 +10,14 @@ Console.WriteLine();
 
 int value1;
 int value2;
+string path = @"pli.txt";
+string s = "";
+int counter = 1;
+StreamReader sr;
 Calculator calculator = new Calculator();
 if (result == 1)
 {
+    Console.ForegroundColor= ConsoleColor.Red;
     Console.Write("Podaj pierwszą liczbę: ");
     value1 = Convert.ToInt32(Console.ReadLine());
     Console.Write("Podaj drugą liczbę: ");
@@ -126,4 +133,53 @@ else if (result == 10)
         tab[i] = Convert.ToInt32(Console.ReadLine());
     }
     Console.WriteLine("Najmniejszy element tablicy to: " + calculator.MinValue(tab));
+}
+else if (result == 11)
+{
+    StreamWriter sw;
+    if (!File.Exists(path))
+    {
+        sw = File.CreateText(path);
+        Console.WriteLine("Plik został utworzony");
+    }
+    else
+    {
+        sw = new StreamWriter(path, true);
+        Console.WriteLine("Plik już istnieje");
+    }
+
+    Console.WriteLine("Podaj tekst: ");
+    string text = Console.ReadLine();
+    sw.WriteLine(text);
+    sw.Close();
+}
+else if (result == 12)
+{
+    Console.WriteLine("Zawartość pliku: ");
+    sr = File.OpenText(path);
+    while ((s = sr.ReadLine()) != null)
+    {
+        Console.WriteLine(s);
+    }
+    sr.Close();
+}
+else if (result == 13)
+{
+    Console.Write("Podaj którą linie tekstu wyświetlić: ");
+    int textline = Convert.ToInt32(Console.ReadLine());
+    sr = File.OpenText(path);
+    while ((s = sr.ReadLine()) != null)
+    {
+        if (counter == textline)
+        {
+            Console.WriteLine(s);
+        }
+        else if (counter < textline)
+        {
+            Console.WriteLine("Taka linia nie istnieje");
+            break;
+        }
+        counter++;
+    }
+    sr.Close();
 }
