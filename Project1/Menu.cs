@@ -8,14 +8,14 @@
             Console.WriteLine("2. Zaawansowany kalkulator");
             Console.WriteLine("3. Działania na plikach txt");
         }
-        public void ShowBasicMain()
+        public void ShowBaseCalculatorMenu()
         {
             Console.WriteLine("1. Dodawanie");
             Console.WriteLine("2. Odejmowanie");
             Console.WriteLine("3. Mnożenie");
             Console.WriteLine("4. Dzielenie");
         }
-        public void ShowAdvancedMenu()
+        public void ShowAdvancedCalculatorMenu()
         {
             Console.WriteLine("5. Liczba pierwsza");
             Console.WriteLine("6. Silnia");
