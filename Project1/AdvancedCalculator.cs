@@ -2,88 +2,75 @@
 {
     internal class AdvancedCalculator
     {
-        public bool isPrimeNumber(int value1)
+        public bool IsPrimeNumber(int value)
         {
-            if (value1 <= 0)
-            {
+            if (value < 2)
                 return false;
-            }
-            else
+
+            for (int i = 2; i < value; i++)
             {
-                for (int i = value1 - 1; i > 1; i--)
+                if (i % 2 == 0)
                 {
-                    if (i % 2 == 0)
-                    {
-                        return false;
-                    }
+                    return false;
+
                 }
             }
             return true;
         }
-        public int GetFactorial(int value1)
+        public int GetFactorial(int value)
         {
-            if (value1 == 0)
+            int factorial = 1;
+            for (int i = value; i > 0; i--)
             {
-                return 1;
+                factorial *= i;
             }
-            else if (value1 > 0)
-            {
-                int mark = 1;
-                for (int i = value1; i > 0; i--)
-                {
-                    mark *= i;
-                }
-                return mark;
-            }
-            return 0;
+            return factorial;
         }
-        public bool IsPerfectNumber(int value1)
+        public bool IsPerfectNumber(int value)
         {
-            int mark = 0;
-            for (int i = value1 - 1; i > 0; i--)
+            int sumOfDivisors = 0;
+            for (int i = 1; i < value; i++)
             {
-                if (value1 % i == 0)
+                if (value % i == 0)
                 {
-                    mark += i;
+                    sumOfDivisors += i;
                 }
             }
-            if (value1 == mark)
+            if (value == sumOfDivisors)
             {
                 return true;
             }
             return false;
         }
-        public int GetAverageNumber(int[] tab)
+        public int GetAverageNumber(int[] array)
         {
             int average = 0;
-            int counter = 0;
-            for (int i = 0; i < tab.Length; i++)
+            for (int i = 0; i < array.Length; i++)
             {
-                average += tab[i];
-                counter++;
+                average += array[i];
             }
-            return average / counter;
+            return average / array.Length;
         }
-        public int GetMaxValue(int[] tab)
+        public int GetMaxValue(int[] array)
         {
-            int max = tab[0];
-            for (int i = 0; i < tab.Length; i++)
+            int max = array[0];
+            for (int i = 0; i < array.Length; i++)
             {
-                if (tab[i] > max)
+                if (array[i] > max)
                 {
-                    max = tab[i];
+                    max = array[i];
                 }
             }
             return max;
         }
-        public int GetMinValue(int[] tab)
+        public int GetMinValue(int[] array)
         {
-            int min = tab[0];
-            for (int i = 0; i < tab.Length; i++)
+            int min = array[0];
+            for (int i = 0; i < array.Length; i++)
             {
-                if (tab[i] < min)
+                if (array[i] < min)
                 {
-                    min = tab[i];
+                    min = array[i];
                 }
             }
             return min;
