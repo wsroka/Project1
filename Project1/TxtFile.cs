@@ -1,37 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
+﻿using System.IO;
 
 namespace Project1
 {
     internal class TxtFile
     {
-        string path = "C:\\Users\\wikto\\Desktop\\file.txt";
-        public void ViewTheFile()
+        const string path = "C:\\Users\\wikto\\Desktop\\file.txt";
+
+        public void ReadFile()
         {
             string readText = File.ReadAllText(path);
             Console.WriteLine(readText);
         }
-        public void SaveText(string text)
+        public void WriteFile(string text)
         {
-            StreamWriter sw = new StreamWriter(path, true);
-            sw.WriteLine(text);
-            sw.Close();
+            using (StreamWriter _streamWriter = new StreamWriter(path))
+            {
+                _streamWriter.WriteLine(text);
+            }
         }
-        public void ViewTheLine(int txtline)
+        public void ReadTheLine(int lineNumber)
         {
             int counter = 1;
             string[] lines = File.ReadLines(path).ToArray();
-            foreach (string r in lines)
+            foreach (string line in lines)
             {
-                if (counter == txtline)
+                if (counter == lineNumber)
                 {
-                    Console.WriteLine(r);
+                    Console.WriteLine(line);
                 }
                 counter++;
             }
